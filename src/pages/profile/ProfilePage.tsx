@@ -1,6 +1,8 @@
+import {useNavigateHook} from "../../hooks";
 
 export function ProfilePage() {
+  const {goLogin} = useNavigateHook();
   return (
-    <div>ProfilePage</div>
+    <button onClick={goLogin}>Salir</button>
   )
 }
