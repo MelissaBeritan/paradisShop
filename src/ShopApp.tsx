@@ -1,6 +1,11 @@
+import {Navbar} from "./components/common/Navbar";
+import AppRouter from "./routes/AppRouter";
 
 export default function ShopApp() {
   return (
-    <div>ShopApp</div>
+    <>
+      <Navbar/>
+      <AppRouter />
+    </>
   )
 }

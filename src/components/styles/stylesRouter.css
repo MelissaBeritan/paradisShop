@@ -1,0 +1,100 @@
+/* ===== ESTILOS PROFESIONALES PARA NAVBAR ===== */
+
+/* Navbar principal */
+.navbar {
+    background: #0f172a;
+    padding: 0.75rem 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Logo/brand */
+.navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #f1f5f9 !important;
+    transition: opacity 0.2s ease;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+}
+
+.navbar-brand:hover {
+    color: #f1f5f9 !important;
+    opacity: 0.8;
+}
+
+/* Contenedor de enlaces */
+.navbar-collapse {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-left: 2rem;
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Contenedor derecha (Logout) */
+.navbar-nav.ml-auto {
+    margin-left: auto;
+    display: flex;
+}
+
+/* Estilos base enlaces */
+.nav-item {
+    list-style: none;
+}
+
+.nav-link {
+    color: #94a3b8 !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Hover */
+.nav-link:hover {
+    color: #f1f5f9 !important;
+    background: #1e293b;
+}
+
+/* Sin estilos active */
+.navbar-nav.ml-auto .nav-link {
+    margin-left: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+    }
+    
+    .navbar-collapse {
+        margin-left: 0;
+        justify-content: center;
+    }
+    
+    .navbar-nav.ml-auto {
+        margin-left: 0;
+    }
+}
