@@ -17,7 +17,7 @@ export default function LoginPage() {
             case 'SET_PASSWORD':
                 return { ...state, password: action.payload };
             case 'RESET':
-                return {  };
+                return initialState;
             default:
                 return state;
         }
@@ -33,7 +33,7 @@ export default function LoginPage() {
   return (
       <>
           <form onSubmit={handleSubmit}>
-              <input type="text" placeholder="Nombre de usuario" />
+              <input type="text" onChange={(e)=>dispatch({type: 'SET_PASSWORD', payload: e.target.value})} placeholder="Nombre de usuario" />
               <input type="password" placeholder="Contraseña" />
               <input type="password" placeholder="Confirmar Contraseña" />
               <button>Enviar</button>
