@@ -44,7 +44,7 @@ type AuthState = {
   isAuthenticated: boolean;
 };
 
-type Action = 
+type UserAction = 
   | { type: 'LOGIN'; payload: User }
   | { type: 'LOGOUT' }
   | { type: 'SET_LOADING'; payload: boolean };
@@ -53,6 +53,11 @@ type CarritoAction =
   | { type: 'AGREGAR'; producto: Product }
   | { type: 'ELIMINAR'; id: number }
   | { type: 'VACIAR' };
+
+type FormAction = 
+    | { type: 'SET_USER'; payload: string }
+    | { type: 'SET_PASSWORD'; payload: string }
+    | { type: 'RESET' };
 
 type DiscountType = '5%' | '10%' | '15%' | '20%';
 
@@ -79,4 +84,4 @@ export const DiscountMap: Record<DiscountType, number> = {
   
 export type {
     User, Cart, Product, Account, UserCredentials, Order, DiscountType,
-    PaymentMethod, OrderStatus, Category, AuthState, Action, CarritoAction };
+    PaymentMethod, OrderStatus, Category, AuthState, UserAction, CarritoAction , FormAction};

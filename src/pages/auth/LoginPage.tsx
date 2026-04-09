@@ -1,11 +1,30 @@
 import { useReducer } from "react";
 import { useNavigateHook } from "../../hooks";
-import type { UserCredentials } from "../../types/apptypes";
+import type { FormAction, UserCredentials } from "../../types/apptypes";
 
 export default function LoginPage() {
     const { goRegister } = useNavigateHook();
-    const user: UserCredentials= {}
-    const [form, dispatch] = useReducer(formReducer, UserCredentials);
+
+    const initialState: UserCredentials = {
+        user: '',
+        password: ''
+    }
+
+    const formReducer = (state : UserCredentials, action : FormAction) => {
+        switch (action.type) {
+            case 'SET_USER':
+                return { ...state, user: action.payload };
+            case 'SET_PASSWORD':
+                return { ...state, password: action.payload };
+            case 'RESET':
+                return {  };
+            default:
+                return state;
+        }
+            
+    }
+    
+    const [form, dispatch] = useReducer(formReducer, initialState);
 
     const handleSubmit = (e) => {
         e.preventDefault();
