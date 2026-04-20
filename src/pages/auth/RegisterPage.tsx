@@ -29,13 +29,19 @@ const handleCheckPassLength = (value) => {
                         type="text" 
                         value={form.user} 
                         onChange={(e) => checkInputs(e.target.value, 'SET_USER')} 
-                        placeholder="Nombre de usuario" 
+                     placeholder="Nombre de usuario"
+                     name="username" 
+                     id="username"
+                     autoComplete="username"
                     />
                 </div>
                 
                 <div className="input-group">
                     <input 
-                        type="password" 
+                     type="password"
+                     name="password"
+                     id="password"
+                     autoComplete="new-password"
                         value={form.password} 
                      onChange={(e) => {
                          checkInputs(e.target.value, 'SET_PASSWORD');
@@ -50,7 +56,10 @@ const handleCheckPassLength = (value) => {
                 </div>                
                 <div className="input-group">
                     <input 
-                        type="password" 
+                     type="password" 
+                     name="confirm-password"
+                     id="confirm-password"
+                     autoComplete="new-password"
                         value={form.confirmedPassword} 
                         onChange={(e) => checkInputs(e.target.value, 'CONFIRM_PASSWORD')} 
                         placeholder="Confirmar Contraseña" 

@@ -2,54 +2,71 @@ import { useState } from "react";
 import { validateForm } from "../../helpers/validateForm";
 import { useForm, useNavigateHook } from "../../hooks";
 import '../styles/loginStyles.css';
+import { validateUser } from "../../helpers/validateUser";
 
+export default function RegisterPage() {
+  const {form, dispatch} = useForm();
+  const { goRegister } = useNavigateHook();
+  const {checkPasslength,checkForm,checkInputs} = validateForm(form,dispatch,goRegister);
+  const [passMessage, setPassMessage] = useState('');  
+    
+const handleCheckPassLength = (value) => {    
+    const isValid = checkPasslength(value);
+    
+    if (!isValid) {
+        setPassMessage('La contraseña debe tener al menos 8 caracteres, mayúsculas, minúsculas, números y símbolos (@$!%*?&)');
+        return;
+    }    
+    setPassMessage('');
+}
+    const checkUser = () => {
+        if (!validateUser) {
+        
+    }
+}
 
-export default function LoginPage() {
-    
-    const {form, dispatch} = useForm();
-    const { goRegister } = useNavigateHook();
-    const {checkPass,checkNewUser,checkInputs} = validateForm(form,dispatch,goRegister);
-    
  return (
-        <div className="login-container">  {/* 👈 Contenedor principal */}
-            <form className="login-form">   {/* 👈 Clase del formulario */}
-                <h2>Iniciar Sesion</h2>        {/* 👈 Título opcional */}
+        <div className="login-container">  
+            <form className="login-form">   
+                <h2>Iniciar Sesion</h2>        
                 
                 <div className="input-group">
                     <input 
                         type="text" 
                         value={form.user} 
                         onChange={(e) => checkInputs(e.target.value, 'SET_USER')} 
-                        placeholder="Nombre de usuario" 
+                     placeholder="Nombre de usuario"
+                     name="username" 
+                     id="username"
+                     autoComplete="username"
                     />
                 </div>
                 
                 <div className="input-group">
                     <input 
-                        type="password" 
+                     type="password"
+                     name="password"
+                     id="password"
+                     autoComplete="new-password"
                         value={form.password} 
-                        onChange={(e) => checkInputs(e.target.value, 'SET_PASSWORD')} 
+                     onChange={(e) => {
+                         checkInputs(e.target.value, 'SET_PASSWORD');
+                         handleCheckPassLength(e.target.value);
+                     }} 
                         placeholder="Contraseña" 
                     />
-                </div>
-                
-                <div className="input-group">
-                    <input 
-                        type="password" 
-                        value={form.confirmedPassword} 
-                        onChange={(e) => checkInputs(e.target.value, 'CONFIRM_PASSWORD')} 
-                        placeholder="Confirmar Contaaraseña" 
-                    />
-                </div>
-                
+                    
+                    <div className={`message ${passMessage.includes('correcta') ? 'success' : 'error'}`}>
+                        {passMessage}
+                    </div>                
+                </div>                          
                 <button 
                     type="submit" 
                     className="submit-btn"
-                    onClick={checkNewUser}
+                    onClick={checkForm}
                 >
-                    Iniciar Sesion
+                    Enviar
                 </button>
-                <p>No tiene cuenta?</p>
             </form>
         </div>
     );
