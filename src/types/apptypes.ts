@@ -1,9 +1,9 @@
 type User = {
     _id?: string;
     userCredentials: UserCredentials;
-    email: string;
-    id_cart: Cart;
-    account: Account;
+    email?: string;
+    id_cart?: Cart;
+    account?: Account;
   
 };
 
@@ -28,6 +28,7 @@ type Account = {
 type UserCredentials = {
     user: string;
     password: string;
+    confirmedPassword: string
 }
 
 type Order = {
@@ -57,6 +58,8 @@ type CarritoAction =
 type FormAction = 
     | { type: 'SET_USER'; payload: string }
     | { type: 'SET_PASSWORD'; payload: string }
+    | { type: 'CONFIRM_PASSWORD';payload: string}
+    | { type:'CLEAN_PASSWORD'}    
     | { type: 'RESET' };
 
 type DiscountType = '5%' | '10%' | '15%' | '20%';
@@ -74,7 +77,7 @@ type Category =
   | 'women\'s footwear'
   | 'men\'s footwear'
   | 'accessories';
-
+  
 export const DiscountMap: Record<DiscountType, number> = {
     '5%': 0.05,
     '10%': 0.10,
@@ -85,3 +88,4 @@ export const DiscountMap: Record<DiscountType, number> = {
 export type {
     User, Cart, Product, Account, UserCredentials, Order, DiscountType,
     PaymentMethod, OrderStatus, Category, AuthState, UserAction, CarritoAction , FormAction};
+

@@ -5,8 +5,9 @@ export function useNavigateHook() {
     const navigate = useNavigate();
     const goLogin = () => navigate('/login');
     const goRegister = () => navigate('/register');
+    const goHome = () => navigate('/');
 
-  return {goLogin,goRegister};
+  return {goLogin,goRegister,goHome};
 }
 
 

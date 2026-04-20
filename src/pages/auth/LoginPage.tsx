@@ -1,44 +1,56 @@
-import { useReducer } from "react";
-import { useNavigateHook } from "../../hooks";
-import type { FormAction, UserCredentials } from "../../types/apptypes";
+import { useState } from "react";
+import { validateForm } from "../../helpers/validateForm";
+import { useForm, useNavigateHook } from "../../hooks";
+import '../styles/loginStyles.css';
+
 
 export default function LoginPage() {
-    const { goRegister } = useNavigateHook();
-
-    const initialState: UserCredentials = {
-        user: '',
-        password: ''
-    }
-
-    const formReducer = (state : UserCredentials, action : FormAction) => {
-        switch (action.type) {
-            case 'SET_USER':
-                return { ...state, user: action.payload };
-            case 'SET_PASSWORD':
-                return { ...state, password: action.payload };
-            case 'RESET':
-                return initialState;
-            default:
-                return state;
-        }
-            
-    }
     
-    const [form, dispatch] = useReducer(formReducer, initialState);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
-
-  return (
-      <>
-          <form onSubmit={handleSubmit}>
-              <input type="text" onChange={(e)=>dispatch({type: 'SET_PASSWORD', payload: e.target.value})} placeholder="Nombre de usuario" />
-              <input type="password" placeholder="Contraseña" />
-              <input type="password" placeholder="Confirmar Contraseña" />
-              <button>Enviar</button>
-          </form>
-          <button onClick={goRegister}>Crear nueva cuenta</button>
-      </>
-  )
+    const {form, dispatch} = useForm();
+    const { goRegister } = useNavigateHook();
+    const {checkPass,checkNewUser,checkInputs} = validateForm(form,dispatch,goRegister);
+    
+ return (
+        <div className="login-container">  {/* 👈 Contenedor principal */}
+            <form className="login-form">   {/* 👈 Clase del formulario */}
+                <h2>Iniciar Sesion</h2>        {/* 👈 Título opcional */}
+                
+                <div className="input-group">
+                    <input 
+                        type="text" 
+                        value={form.user} 
+                        onChange={(e) => checkInputs(e.target.value, 'SET_USER')} 
+                        placeholder="Nombre de usuario" 
+                    />
+                </div>
+                
+                <div className="input-group">
+                    <input 
+                        type="password" 
+                        value={form.password} 
+                        onChange={(e) => checkInputs(e.target.value, 'SET_PASSWORD')} 
+                        placeholder="Contraseña" 
+                    />
+                </div>
+                
+                <div className="input-group">
+                    <input 
+                        type="password" 
+                        value={form.confirmedPassword} 
+                        onChange={(e) => checkInputs(e.target.value, 'CONFIRM_PASSWORD')} 
+                        placeholder="Confirmar Contaaraseña" 
+                    />
+                </div>
+                
+                <button 
+                    type="submit" 
+                    className="submit-btn"
+                    onClick={checkNewUser}
+                >
+                    Iniciar Sesion
+                </button>
+                <p>No tiene cuenta?</p>
+            </form>
+        </div>
+    );
 }
