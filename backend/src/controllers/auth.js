@@ -1,16 +1,8 @@
 const { response } = require('express');
-const { validationResult } = require('express-validator');
 
 const crearUsuario = (request, response) => {
     const { name, email, password, confirmPassword } = request.body;
-    const errors = validationResult(request);
-        
-    if (!errors.isEmpty()) {
-        return response.status(400).json({
-            ok: false,
-            msj: errors.mapped()
-        });
-    }
+    
 
     response.status(201).json(
         {
@@ -23,7 +15,15 @@ const crearUsuario = (request, response) => {
         });
 };
 
-const loginUsuario = (request, response) => { response.json({ ok: true }) };
+const loginUsuario = (request, response) => {
+    const { name, password } = request.body;
+ 
+    response.status(200).json({
+        login: 'done',
+        name: name,
+        password: password
+    });
+};
 const revalidarToken = (request, response) => { response.json({ ok: true }) };
 
 module.exports = {
