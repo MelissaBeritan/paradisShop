@@ -1,17 +1,16 @@
 const { response } = require('express');
 
-const crearUsuario = (request, response) => {
-    const { name, email, password, confirmPassword } = request.body;
+const crearUsuario = async (request, response) => {
     
+    const usuario = new Usuario(request.body);
+
+    await usuario.save();
 
     response.status(201).json(
         {
             ok: true,
             msj: "registro",
-            name: name,
-            email: email,
-            password: password,
-            confirmPassword: confirmPassword,
+            user: Usuario
         });
 };
 
