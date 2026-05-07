@@ -1,7 +1,7 @@
 const {Schema, model} = require('mongoose');
 
 const usuarioSchema = Schema({
-    nombre: {
+    user: {
         type: String,
         require: true
     },
@@ -13,7 +13,7 @@ const usuarioSchema = Schema({
     password: {
         type: String,
         require: true
-    }
+    },
 });
 
 module.exports = model('Usuario',usuarioSchema);

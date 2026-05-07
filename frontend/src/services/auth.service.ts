@@ -11,7 +11,6 @@ export const authService = {
         },
         body: JSON.stringify(credentials)
       });
-
       const data = await response.json();
 
       if (!response.ok) {
@@ -38,6 +37,7 @@ export const authService = {
         }});
             const data = await response.json();
             console.log(data);
+            console.log('response', response);
 
             if (!response.ok) {
                 throw new Error(data.message || 'Error al registar');

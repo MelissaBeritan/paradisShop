@@ -18,11 +18,11 @@ const crearUsuario = async (request, response) => {
 };
 
 const loginUsuario = (request, response) => {
-    const { name, password } = request.body;
+    const { user, password } = request.body;
  
     response.status(200).json({
         login: 'done',
-        name: name,
+        user: user,
         password: password
     });
 };

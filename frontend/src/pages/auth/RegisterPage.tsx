@@ -36,15 +36,15 @@ export default function LoginPage() {
         
         // Llamar a handleLogin
         await handleRegister(
-        { username: form.user, password: form.password, confirmedPassword: form.confirmedPassword },
+        { user: form.user, password: form.password, confirmedPassword: form.confirmedPassword },
         (data) => {
             // ✅ Éxito: redirigir
-            console.log('Login exitoso:', data);
+            console.log('Register exitoso:', data);
             goRegister();
         },
         (error) => {
             // ❌ Error: mostrar mensaje
-            console.log('Login fallido:', error);
+            console.log('Register fallido:', error);
             setServerError(error);
         }
         );
@@ -56,7 +56,7 @@ export default function LoginPage() {
  return (
         <div className="login-container">  
             <form className="login-form" onSubmit={onSubmit}>   
-             <h2>Iniciar Sesion</h2>
+             <h2>Registrar cuenta</h2>
             {serverError && (
                 <div style={{ color: 'red', marginBottom: '10px', textAlign: 'center' }}>
             {serverError}
