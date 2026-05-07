@@ -1,10 +1,16 @@
 const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
 const { dbConection } = require('./database/config');
 const app = express();
 
-require('dotenv').config();
-
 dbConection();
+
+app.use(cors({
+    origin: 'http://localhost:5173',  // frontend
+    credentials: true
+}));
 
 app.use(express.static('public'));
 

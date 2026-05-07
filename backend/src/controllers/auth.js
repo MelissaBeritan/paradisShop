@@ -1,10 +1,13 @@
 const { response } = require('express');
+const {Usuario} = require('../models')
+
 
 const crearUsuario = async (request, response) => {
     
     const usuario = new Usuario(request.body);
 
     await usuario.save();
+    console.log(usuario);
 
     response.status(201).json(
         {

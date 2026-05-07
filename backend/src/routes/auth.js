@@ -14,7 +14,7 @@ const { fieldsValidator } = require('../middlewares/fieldsValidator');
 router.get('/', (req, res) => { res.json({ ok: true }) });
 router.post('/newUser', [
     check('name', 'El nombre es obligatorio').notEmpty(),
-    check('email', 'El email es obligatorio').isEmail(),
+    //check('email', 'El email es obligatorio').isEmail(),
     check('password', 'Contrasena invalida').custom((password) => passwordValidator(password)),
     check('confirmPassword', 'Las contrasenas no cohinciden').custom((confirmPassword, request) => confirmedPasswordValidator(confirmPassword, request)),
     fieldsValidator

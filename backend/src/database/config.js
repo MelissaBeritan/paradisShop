@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+console.log('aaa',process.env.DB_CONECTION);
 const dbConection = async() => {
     try {
         console.log('conectando');
